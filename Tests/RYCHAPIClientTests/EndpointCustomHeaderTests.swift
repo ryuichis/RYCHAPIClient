@@ -44,4 +44,22 @@ class EndpointCustomHeaderTests: XCTestCase {
     }
     XCTAssertEqual(headerFields, ["X-Ryuichi-Foo": "Bar", "Authorization": "Basic 1234567"])
   }
+
+  func testPostMethodInURLEncoding() {
+    let testEndpoint = TestEndpoint(method: .post, parameters: ["foo": "bar"], customHTTPHeaders: ["X-Ryuichi-Foo": "Bar"])
+    guard let headerFields = testEndpoint.urlRequest.allHTTPHeaderFields else {
+      XCTFail("Failed in getting http headers.")
+      return
+    }
+    XCTAssertEqual(headerFields, ["X-Ryuichi-Foo": "Bar", "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"])
+  }
+
+  func testJSONEncoding() {
+    let testEndpoint = TestEndpoint(method: .post, parameters: ["foo": "bar"], parameterEncoding: .json, customHTTPHeaders: ["X-Ryuichi-Foo": "Bar"])
+    guard let headerFields = testEndpoint.urlRequest.allHTTPHeaderFields else {
+      XCTFail("Failed in getting http headers.")
+      return
+    }
+    XCTAssertEqual(headerFields, ["X-Ryuichi-Foo": "Bar", "Content-Type": "application/json"])
+  }
 }
