@@ -24,10 +24,10 @@ just in case it could also help others.
 
 ## Contact
 
-Ryuichi Saito
+Ryuichi Sai
 
 - http://github.com/ryuichis
-- ryuichi@ryuichisaito.com
+- ryuichi@ryuichisai.com
 
 ## License
 
